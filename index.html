@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Shakhawat Iqbal Ovi — electrical engineer (BUET) working on power systems, microgrids, smart grids and cyber-physical systems.">
+<title>Shakhawat Iqbal Ovi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+<style>
+/* Layout: two-column on desktop — a sticky identity rail on the left, long reading column on the right; stacks on phones. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --fg: #16202b;
+  --muted: #5b6a7a;
+  --line: #d9dfe6;
+  --accent: #b5651d;        /* copper */
+  --accent-soft: #f6e8db;
+  --rail: #1c2a3a;          /* slate navy */
+  --rail-fg: #e9eef4;
+  --rail-muted: #9fb0c2;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f151c; --surface: #161e27; --fg: #e6ebf1; --muted: #98a6b5; --line: #273240;
+    --accent: #e08a3c; --accent-soft: #3a2a1b; --rail: #0a0f15; --rail-fg: #e9eef4; --rail-muted: #8fa0b2;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f151c; --surface: #161e27; --fg: #e6ebf1; --muted: #98a6b5; --line: #273240;
+  --accent: #e08a3c; --accent-soft: #3a2a1b; --rail: #0a0f15; --rail-fg: #e9eef4; --rail-muted: #8fa0b2;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+a { color: var(--accent); text-decoration: none; }
+a:hover, a:focus-visible { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+.page { display: grid; grid-template-columns: 320px minmax(0, 1fr); min-height: 100%; }
+@media (max-width: 860px) { .page { grid-template-columns: 1fr; } }
+
+/* Identity rail */
+.rail { background: var(--rail); color: var(--rail-fg); padding-block: 48px 40px;
+  padding-left: max(28px, env(safe-area-inset-left, 0px)); padding-right: max(28px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 861px) { .rail { position: sticky; top: 0; height: 100vh; overflow: auto; } }
+.rail .name { font-family: var(--display); font-weight: 600; font-size: 34px; line-height: 1.1; letter-spacing: -0.01em; }
+.rail .role { margin-top: 12px; color: var(--rail-muted); font-size: 15px; line-height: 1.5; }
+.rail .role strong { color: var(--rail-fg); font-weight: 500; }
+.rail .where { margin-top: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--rail-muted); letter-spacing: 0.02em; }
+.rail .divider { border: 0; border-top: 1px solid rgba(255,255,255,0.12); margin: 28px 0; }
+.rail .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rail-muted); margin-bottom: 10px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px 6px; padding: 0; margin: 0; list-style: none; }
+.tags li { font-size: 12.5px; padding: 4px 9px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; color: var(--rail-fg); }
+.contact { display: grid; gap: 10px; margin-top: 4px; }
+.contact a, .contact .email { color: var(--rail-fg); display: flex; align-items: center; gap: 10px; font-size: 14.5px; }
+.contact svg { width: 16px; height: 16px; flex: none; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.email { flex-wrap: wrap; }
+.email code { font-family: var(--mono); font-size: 13px; user-select: all; word-break: break-all; }
+.copy { font: 500 11px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; background: transparent; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 5px 8px; cursor: pointer; }
+.copy:hover { background: var(--accent); color: #fff; }
+.nav { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.nav a { color: var(--rail-muted); font-size: 14px; display: flex; gap: 10px; align-items: baseline; }
+.nav a::before { content: ""; width: 14px; border-top: 1px solid var(--rail-muted); transform: translateY(-4px); transition: width .15s; }
+.nav a:hover { color: var(--rail-fg); text-decoration: none; }
+.nav a:hover::before { width: 24px; border-color: var(--accent); }
+@media (max-width: 860px) { .nav-block { display: none; } }
+
+/* Main column */
+main { padding-block: 56px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 760px; margin: 0 auto; display: grid; gap: 56px; }
+@media (min-width: 861px) { main { padding-left: 56px; padding-right: 56px; } .inner { margin: 0; } }
+
+section > h2 { font-family: var(--display); font-weight: 500; font-size: 26px; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
+section > h2::after { content: ""; flex: 1; border-top: 1px solid var(--line); transform: translateY(-6px); }
+.lede { font-size: 19px; line-height: 1.55; max-width: 62ch; }
+.lede + p { color: var(--muted); max-width: 65ch; margin: 14px 0 0; }
+
+/* Timeline entries */
+.entries { display: grid; gap: 28px; }
+.entry { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 6px 24px; }
+@media (max-width: 600px) { .entry { grid-template-columns: 1fr; } }
+.when { font-family: var(--mono); font-size: 12.5px; color: var(--muted); padding-top: 4px; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; }
+.when small { display: block; margin-top: 2px; }
+.entry h3 { font-size: 17px; font-weight: 600; line-height: 1.35; }
+.entry .org { color: var(--muted); font-size: 15px; margin-top: 2px; }
+.entry ul { margin: 10px 0 0; padding-left: 18px; color: var(--fg); }
+.entry li { margin: 4px 0; }
+.entry li::marker { color: var(--accent); }
+
+/* Research card */
+.paper { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); padding: 20px 22px; margin-top: 18px; }
+.paper .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.paper h3 { font-family: var(--display); font-weight: 500; font-size: 20px; margin-top: 8px; line-height: 1.3; }
+.paper p { margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+.paper .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; }
+
+/* Projects */
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.proj { background: var(--surface); border: 1px solid var(--line); padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.proj .tool { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.proj h3 { font-size: 16px; font-weight: 600; line-height: 1.35; }
+.proj p { margin: 0; font-size: 14.5px; color: var(--muted); flex: 1; }
+.proj .links { display: flex; gap: 14px; font-size: 13.5px; font-weight: 500; }
+
+/* Skills */
+.skills { display: grid; gap: 14px; }
+.skill { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 6px 20px; align-items: baseline; }
+@media (max-width: 600px) { .skill { grid-template-columns: 1fr; } }
+.skill dt { font-family: var(--mono); font-size: 12.5px; color: var(--muted); letter-spacing: 0.02em; }
+.skill dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.skill dd span { font-size: 13.5px; padding: 3px 9px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
+
+/* Two-up blocks */
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px 40px; }
+.two h3 { font-size: 13px; font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.plain { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.plain li { padding-left: 14px; position: relative; }
+.plain li::before { content: ""; position: absolute; left: 0; top: 11px; width: 6px; height: 1px; background: var(--accent); }
+.plain .sub { color: var(--muted); font-size: 14px; }
+.scores { display: grid; gap: 10px; }
+.score { display: grid; grid-template-columns: 70px 1fr; gap: 14px; align-items: baseline; }
+.score b { font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1; }
+.score .d { font-family: var(--mono); font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.score .d span { color: var(--fg); }
+
+.visits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.visit { border-top: 2px solid var(--line); padding-top: 10px; }
+.visit b { font-weight: 600; font-size: 15px; display: block; }
+.visit span { color: var(--muted); font-size: 14px; }
+
+footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; font-family: var(--mono); display: flex; flex-wrap: wrap; gap: 8px 20px; }
+footer a { color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <aside class="rail">
+    <h1 class="name">Shakhawat<br>Iqbal Ovi</h1>
+    <p class="role"><strong>Executive Engineer, Maintenance</strong><br>Coats Bangladesh Ltd.</p>
+    <p class="where">B.Sc. EEE · BUET · Chittagong, Bangladesh</p>
+
+    <hr class="divider">
+    <p class="label">Research interests</p>
+    <ul class="tags">
+      <li>Power systems</li><li>Grid resiliency</li><li>Smart grid</li><li>Microgrid</li>
+      <li>Renewable energy</li><li>Cyber-physical systems</li><li>Machine learning</li>
+    </ul>
+
+    <hr class="divider">
+    <p class="label">Contact</p>
+    <div class="contact">
+      <div class="email">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <code id="email">shakhawatbuet138@gmail.com</code>
+        <button class="copy" id="copy-email" type="button">Copy</button>
+      </div>
+      <a href="https://www.linkedin.com/in/shakhawat-iqbal-ovi-184477336/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 7.5v.5M12 17v-4a2 2 0 0 1 4 0v4"/></svg>LinkedIn</a>
+      <a href="https://github.com/ShakhawatOvi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.5 11.5 0 0 0-6 0C6.8 2.8 5.8 3.1 5.8 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>GitHub</a>
+      <a href="https://doi.org/10.31224/4070" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Paper on engrXiv</a>
+    </div>
+
+    <div class="nav-block">
+      <hr class="divider">
+      <p class="label">On this page</p>
+      <ul class="nav">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education &amp; scores</a></li>
+        <li><a href="#more">Awards &amp; activities</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main>
+    <div class="inner">
+
+      <section id="about">
+        <p class="lede">I am an electrical engineer who keeps industrial plants running and wants to make power grids more resilient. My work sits between the control room and the research paper: optimizing energy use on the factory floor by day, and studying how microgrids can be run cleaner and cheaper.</p>
+        <p>I graduated from Bangladesh University of Engineering and Technology (BUET) in 2023 and have since worked on solar system design, industrial maintenance, and utility operations. I am preparing for graduate study in power systems, smart grids, and cyber-physical systems.</p>
+      </section>
+
+      <section id="research">
+        <h2>Research</h2>
+        <div class="entry">
+          <div class="when">2022 – 2023<small>BUET</small></div>
+          <div>
+            <h3>B.Sc. thesis: Energy management through optimization of pollutant emission and cost in a microgrid</h3>
+            <p class="org">Supervisor: <a href="https://eee.buet.ac.bd/people/faculty/hr" target="_blank" rel="noopener">Dr. Hamidur Rahman</a>, Associate Professor, Department of EEE, BUET</p>
+            <ul>
+              <li>Built a MATLAB model of a microgrid with conventional and renewable sources and formulated the energy-management problem as a multi-objective optimization of operating cost and pollutant emission.</li>
+              <li>Applied Particle Swarm Optimization (PSO) to find dispatch strategies that balance economic efficiency against environmental impact.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="paper">
+          <div class="kicker">Preprint · engrXiv · 2024</div>
+          <h3>Energy Management through Multiobjective Optimization of Cost and Pollution</h3>
+          <p>Shakhawat Iqbal Ovi and Hamidur Rahman</p>
+          <div class="links">
+            <a href="https://doi.org/10.31224/4070" target="_blank" rel="noopener">doi:10.31224/4070 →</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <div class="entries">
+          <div class="entry">
+            <div class="when">Jul 2025 – Present<small>Chittagong</small></div>
+            <div>
+              <h3>Executive Engineer (Maintenance)</h3>
+              <p class="org">Coats Bangladesh Ltd.</p>
+              <ul>
+                <li>Keep dyeing and finishing machines at peak performance through proactive maintenance and continuous monitoring.</li>
+                <li>Oversee Utility, Boiler, Water Treatment Plant and Effluent Treatment Plant operations, ensuring efficiency and compliance with safety standards.</li>
+                <li>Lead initiatives to cut energy, water and gas consumption in support of the company's sustainability goals.</li>
+                <li>Run root-cause analyses of equipment failures and put preventive measures in place.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="when">Jan 2025 – Jul 2025<small>Gazipur</small></div>
+            <div>
+              <h3>Assistant Engineer (Maintenance)</h3>
+              <p class="org">DBL Group</p>
+              <ul>
+                <li>Oversaw routine and emergency maintenance, keeping machines running and electrical systems compliant with BNBC and international audit standards.</li>
+                <li>Led and contributed to energy-efficiency projects that reduced consumption and operating cost.</li>
+                <li>Analyzed data from rooftop solar and diesel generators to produce daily energy reports for management.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="when">Jul 2023 – Jun 2024<small>Dhaka</small></div>
+            <div>
+              <h3>System Engineer</h3>
+              <p class="org">Filament Engineering Ltd.</p>
+              <ul>
+                <li><b>Solar systems:</b> designed customized installations for clients, selecting panels, inverters and balance-of-system components.</li>
+                <li><b>Lightning protection:</b> designed systems by sizing GI pole heights and selecting guy wires and air terminals for each building.</li>
+                <li><b>Optical fiber:</b> managed installation end to end, including horizontal directional drilling, cable blowing, splicing and ODF termination.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Academic projects</h2>
+        <div class="projects">
+          <article class="proj">
+            <div class="tool">Arduino · Proteus · IoT</div>
+            <h3>Smart EVM with IoT and fingerprint authentication</h3>
+            <p>Electronic voting machine that enrolls voters, admits only registered fingerprints, blocks duplicate votes, streams results to an authorized website and runs on Li-Po backup power.</p>
+            <div class="links"><a href="https://github.com/ShakhawatOvi/Smart-EVM/tree/main/EVM_Final" target="_blank" rel="noopener">GitHub</a><a href="https://www.youtube.com/watch?v=OSndbgKLA34" target="_blank" rel="noopener">Video</a></div>
+          </article>
+          <article class="proj">
+            <div class="tool">Power electronics</div>
+            <h3>DC variable power supply</h3>
+            <p>Converts 220 V AC to a variable low-voltage DC output using a self-designed bridge rectifier and a custom buck converter.</p>
+            <div class="links"><a href="https://github.com/ShakhawatOvi/DC-Variable-PowerSupply" target="_blank" rel="noopener">GitHub</a><a href="https://youtu.be/Uq38ujqZVPE" target="_blank" rel="noopener">Video</a></div>
+          </article>
+          <article class="proj">
+            <div class="tool">PSAF · PSS/E</div>
+            <h3>Weakest-bus identification and voltage stability improvement</h3>
+            <p>Computed reactive power at each bus to find the most vulnerable one, then proposed an under-frequency load-shedding scheme in PSS/E.</p>
+            <div class="links"><a href="https://github.com/ShakhawatOvi/Weakest-Bus-Identification.git" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+          <article class="proj">
+            <div class="tool">AutoCAD</div>
+            <h3>Electrical service design of a multi-storey building</h3>
+            <p>Five-storey plan with fittings, fixtures and conduits, plus switchboard and distribution diagrams (SDB, EMDB, MDB).</p>
+            <div class="links"><a href="https://github.com/ShakhawatOvi/Electrical-Service-Design" target="_blank" rel="noopener">GitHub</a></div>
+          </article>
+          <article class="proj">
+            <div class="tool">Embedded · Sensors</div>
+            <h3>Temperature-based door unlock with automatic hand sanitization</h3>
+            <p>Reads body temperature, opens the gate only for a healthy reading and dispenses sanitizer, built for the COVID-19 period.</p>
+            <div class="links"><a href="https://youtu.be/9mwYSj5hGUE" target="_blank" rel="noopener">Video</a></div>
+          </article>
+          <article class="proj">
+            <div class="tool">MATLAB · Image processing</div>
+            <h3>Vehicle number-plate detection</h3>
+            <p>Image-processing pipeline in MATLAB that locates a number plate and reads its letters and digits.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Technical skills</h2>
+        <dl class="skills">
+          <div class="skill"><dt>Programming</dt><dd><span>MATLAB</span><span>Python</span><span>C</span><span>C++</span><span>Verilog</span><span>HTML</span></dd></div>
+          <div class="skill"><dt>Power &amp; simulation</dt><dd><span>PSAF</span><span>PSS/E</span><span>PVsyst</span><span>OpenSolar</span><span>Proteus</span><span>PSpice</span></dd></div>
+          <div class="skill"><dt>Hardware</dt><dd><span>Arduino IDE</span><span>STM32</span></dd></div>
+          <div class="skill"><dt>Design</dt><dd><span>AutoCAD</span></dd></div>
+          <div class="skill"><dt>Office</dt><dd><span>MS Word</span><span>MS Excel</span><span>MS PowerPoint</span><span>Adobe Dreamweaver</span></dd></div>
+        </dl>
+      </section>
+
+      <section id="education">
+        <h2>Education &amp; scores</h2>
+        <div class="two">
+          <div>
+            <h3>Education</h3>
+            <div class="entry" style="grid-template-columns:1fr">
+              <div>
+                <h3 style="font-family:var(--body);font-size:17px;letter-spacing:0;text-transform:none;color:var(--fg)">B.Sc. in Electrical and Electronic Engineering</h3>
+                <p class="org">Bangladesh University of Engineering and Technology (BUET), Dhaka</p>
+                <p class="when" style="padding-top:6px">2018 – 2023 · CGPA 3.32 / 4.00</p>
+              </div>
+            </div>
+            <h3 style="margin-top:28px">Certifications</h3>
+            <ul class="plain">
+              <li><a href="https://www.coursera.org/account/accomplishments/verify/G5B8EG5SEDWE" target="_blank" rel="noopener">Google Project Management Certificate</a><div class="sub">Coursera · Feb 2024</div></li>
+              <li><a href="https://www.coursera.org/account/accomplishments/verify/ZVLXPS2NC52A" target="_blank" rel="noopener">Solar System Design Overview</a><div class="sub">University at Buffalo via Coursera · Jan 2024</div></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Standardized tests</h3>
+            <div class="scores">
+              <div class="score"><b>303</b><div class="d">GRE · Oct 2023<br>Quant <span>160</span> · Verbal <span>143</span> · AWA <span>3.0</span></div></div>
+              <div class="score"><b>94</b><div class="d">TOEFL iBT · Jun 2024<br>R <span>27</span> · L <span>23</span> · W <span>24</span> · S <span>20</span></div></div>
+            </div>
+            <h3 style="margin-top:28px">Industrial attachments</h3>
+            <div class="visits">
+              <div class="visit"><b>Ashuganj Power Plant</b><span>Large-scale generation, high-voltage systems, substations and distribution</span></div>
+              <div class="visit"><b>Rooppur Nuclear Power Plant</b><span>Control-room operations and reactor design principles</span></div>
+              <div class="visit"><b>National Load Dispatch Center</b><span>Real-time load monitoring, demand–supply balancing and renewable integration</span></div>
+              <div class="visit"><b>BUET Power Plant</b><span>Plant operation and maintenance; wrote a full operations report</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="more">
+        <h2>Awards &amp; activities</h2>
+        <div class="two">
+          <div>
+            <h3>Honors</h3>
+            <ul class="plain">
+              <li>Runner-up, Inter-Unit Leadership Excellence Competition, DBL Group<div class="sub">2025</div></li>
+              <li>HSC Board Scholarship, Chittagong Division<div class="sub">2017</div></li>
+              <li>Winner, Divisional Round, Bangladesh Astro Olympiad<div class="sub">2016</div></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Leadership &amp; volunteering</h3>
+            <ul class="plain">
+              <li>Logistics Secretary, BUET Journalist Society<div class="sub">2022 – 2023 · Wrote content and ran logistics for seminars and workshops</div></li>
+              <li>Member, Badhon, BUET Zone<div class="sub">2018 – 2023 · Recruited and organized a network of voluntary blood donors</div></li>
+            </ul>
+          </div>
+        </div>
+        <footer>
+          <span>Shakhawat Iqbal Ovi · Chittagong, Bangladesh</span>
+          <a href="https://github.com/ShakhawatOvi" target="_blank" rel="noopener">github.com/ShakhawatOvi</a>
+        </footer>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var el = document.getElementById('email');
+  if (!btn || !el) return;
+  btn.addEventListener('click', function () {
+    var text = el.textContent;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
